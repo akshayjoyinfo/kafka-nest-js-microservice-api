@@ -1,0 +1,13 @@
+{
+    "clientId": "lkc-gq59q3",
+    "kafkaTopic": "",
+    "broker": "pkc-41p56.asia-south1.gcp.confluent.cloud:9092",
+    "sasl": {
+        "mechanism": "plain",
+        "username": "",
+        "password": ""        
+    },
+    "connectionTimeout": 3000,
+    "authenticationTimeout": 1000,
+    "reauthenticationThreshold": 10000
+}

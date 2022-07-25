@@ -1,0 +1,48 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/statistics-kafka-ms/src",
+  "monorepo": true,
+  "root": "apps/statistics-kafka-ms",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/statistics-kafka-ms/tsconfig.app.json"
+  },
+  "projects": {
+    "statistics-kafka-ms": {
+      "type": "application",
+      "root": "apps/statistics-kafka-ms",
+      "entryFile": "main",
+      "sourceRoot": "apps/statistics-kafka-ms/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/statistics-kafka-ms/tsconfig.app.json"
+      }
+    },
+    "statistics-api": {
+      "type": "application",
+      "root": "apps/statistics-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/statistics-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/statistics-api/tsconfig.app.json"
+      }
+    },
+    "modules": {
+      "type": "library",
+      "root": "libs/modules",
+      "entryFile": "index",
+      "sourceRoot": "libs/modules",
+      "compilerOptions": {
+        "tsConfigPath": "libs/modules/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "type": "library",
+      "root": "libs/utils",
+      "entryFile": "index",
+      "sourceRoot": "libs/utils",
+      "compilerOptions": {
+        "tsConfigPath": "libs/utils/tsconfig.lib.json"
+      }
+    }
+  }
+}
