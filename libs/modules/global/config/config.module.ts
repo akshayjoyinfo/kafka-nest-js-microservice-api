@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { IConfigService } from './config.adapter';
 import { ConfigurationService } from './config.service';
-
+@Global()
 @Module({
     providers: [
         {

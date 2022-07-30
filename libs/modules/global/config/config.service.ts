@@ -13,6 +13,7 @@ import {
     authenticationTimeout,
     reauthenticationThreshold,
 } from '../../../../kafka.config.json';
+import { KafkaOptions, Transport } from "@nestjs/microservices";
 
 
 @Injectable()
@@ -58,6 +59,7 @@ export class ConfigurationService extends ConfigService implements IConfigServic
     getKafkaConfig(topicName: string): KafkaConfig {
         return [{
             clientId: topicName,
+            ssl: true,
             brokers: [this.get(`${topicName.toUpperCase()}_KAFKA_BROKER`)],
             sasl: {
                 mechanism: 'plain',
@@ -70,6 +72,29 @@ export class ConfigurationService extends ConfigService implements IConfigServic
 
         } as KafkaConfig
         ].filter(conf => conf.clientId === topicName)[0]
+    }
+
+    getKafkaConfigMicroservice(topicName: string): KafkaOptions {
+        return {
+            transport: Transport.KAFKA,
+            options: {
+                consumer: {
+                    groupId: 'akshay',
+                    heartbeatInterval: 10000
+
+                },
+                client: {
+                    brokers: [this.get(`${topicName.toUpperCase()}_KAFKA_BROKER`)],
+                    clientId: topicName+'-consumer',
+                    ssl: true,
+                    sasl: {
+                        mechanism: 'plain',
+                        username: this.get(`${topicName.toUpperCase()}_CONSUMER_KAFKA_USERNAME`),
+                        password:this.get(`${topicName.toUpperCase()}_CONSUMER_KAFKA_PASSWORD`)
+                    }
+                },
+            }
+        }
     }
 
 }

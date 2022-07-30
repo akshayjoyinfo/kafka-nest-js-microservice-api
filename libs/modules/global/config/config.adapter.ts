@@ -1,3 +1,4 @@
+import { KafkaOptions } from '@nestjs/microservices';
 import * as dotenv from 'dotenv';
 import { KafkaConfig } from 'kafkajs';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
@@ -20,4 +21,5 @@ export abstract class IConfigService {
     
     abstract getConfigDb(): PostgresConnectionOptions;
     abstract getKafkaConfig(topicName: string): KafkaConfig;
+    abstract getKafkaConfigMicroservice(topicName: string): KafkaOptions
 }
